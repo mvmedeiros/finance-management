@@ -16,5 +16,5 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
-        ordering = ['name']
+        ordering = ['type', 'name']
         unique_together = ('name', 'type')
