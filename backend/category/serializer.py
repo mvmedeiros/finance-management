@@ -14,4 +14,14 @@ class CategorySerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Type is required.")
         if attrs['type'] not in dict(Category.TYPE_CHOICES):
             raise serializers.ValidationError(f"Invalid type: {attrs['type']}. Must be one of {dict(Category.TYPE_CHOICES).keys()}.")
+
         return attrs
+
+    def create(self, validated_data):
+        category, created = Category.objects.get_or_create(
+            name=validated_data.get('name'),
+            type=validated_data.get('type'),
+            defaults={'description': validated_data.get('description', '')}
+        )
+        self._was_created = created  # Flag for the view to return 201 Created if a new category was created
+        return category
