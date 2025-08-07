@@ -60,7 +60,7 @@ finance-control/
 
 cd backend
 python -m venv venv
-source venv/bin/activate
+.venv/scripts/activate
 pip install -r requirements.txt
 
 2. Run migrations and create superuser:
@@ -100,3 +100,4 @@ Frontend runs at: http://localhost:3000/
 | xxxxx | xxx | xxx |
 
 ---
+
